@@ -2,6 +2,8 @@
 
 > **Status: pre-beta / research prototype.** No real profiles, no real users, never used with a real person. Every sample profile is a fictional composite. The code runs and the evals pass, but the thing this project actually needs — real communication data from real practitioners — does not exist yet. Read everything below in that light.
 
+**Live demo:** https://bridge-aac.onrender.com (see the About page there for a plain-language overview)
+
 ## What this is
 
 Some kids communicate in ways most people can't read: a bell rung twice, a wrist bite, a "yes" that means *hello* rather than *yes*, a song lyric that means *I'm overwhelmed*. The people who can read that code — a parent, a one-to-one aide, a counselor after a full summer — carry it in their heads, and it leaves when they do.

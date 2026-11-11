@@ -124,3 +124,4 @@ pre { font-family: var(--mono); font-size: 0.78rem; background: #fff; border: 1p
 .reading { display: grid; gap: 0.4rem; border-top: 1px dashed var(--card-edge); margin-top: 0.6rem; padding-top: 0.6rem; }
 .reading label { display: grid; gap: 0.25rem; font-size: 0.88rem; }
 .reading textarea { min-height: 3rem; border: 1.5px solid var(--card-edge); border-radius: var(--r); padding: 0.5rem; font: inherit; }
+.aboutlink { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About Bridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .about { max-width: 46rem; margin: 1.5rem auto 3rem; padding: 0 1rem; line-height: 1.6; }
+  .about h2 { margin: 2rem 0 0.5rem; font-size: 1.35rem; }
+  .about p, .about li { margin-bottom: 0.6rem; }
+  .about ul, .about ol { padding-left: 1.3rem; }
+  .about .lead { font-size: 1.15rem; }
+  .about .status { border-left: 6px solid var(--bell); }
+  .about table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; }
+  .about td { padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--card-edge); vertical-align: top; }
+  .about td:first-child { font-weight: 700; white-space: nowrap; padding-left: 0; }
+  .top a { color: #fff; }
+  @media (max-width: 640px) { .about td:first-child { white-space: normal; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <h1>Bridge</h1>
+    <span class="tag">AI proposes · people decide</span>
+  </div>
+  <div class="who"><a href="/">← Back to the demo</a></div>
+</header>
+
+<main class="about">
+  <div class="card status">
+    <b>This is a rough research prototype.</b> The kids in it are made up. It has never been used with a real person. It is not a product, not a medical device, and not clinical advice.
+  </div>
+
+  <h2>What this is</h2>
+  <p class="lead">Bridge helps the adult standing next to a kid who has trouble communicating.</p>
+  <p>Some kids say things in ways most people can't read: a word repeated twice, pacing by a door, a line from a TV show, a "yes" that really means "hello." The people who know that kid well can read it. A new counselor, a substitute teacher, or a bus driver can't.</p>
+  <p>Bridge writes down what the people who know the kid have learned, and helps everyone else use it.</p>
+
+  <h2>Where the idea came from</h2>
+  <p>It started at summer camp. The author was a counselor for kids with developmental disabilities from 1989 to 1998. What helped a kid most wasn't the picture schedule on the wall. It was a person who knew that kid's "language" standing next to it, every time. That person can't be everywhere. Bridge is an attempt to help with that.</p>
+
+  <h2>How it works</h2>
+  <p><b>1. A profile for each kid.</b> Think of it as orientation day written down: what their words, sounds and gestures mean, what upsets them and the early warning signs, what calms them, their daily schedule, and who they trust.</p>
+  <p><b>2. Tools that read the profile.</b> Each tab in the demo is one tool:</p>
+  <table>
+    <tr><td>What did that mean?</td><td>Describe what the kid did. Get a few possible meanings, each with how sure it is. If you figure out the real meaning, you can save your own interpretation.</td></tr>
+    <tr><td>Help them say it</td><td>The kid picks words. Bridge suggests short messages that use only those words. The kid picks one, or none.</td></tr>
+    <tr><td>Plan changed</td><td>Lunch is late, swim is cancelled. Get the exact words and cues to explain it to this kid.</td></tr>
+    <tr><td>How do I talk with them?</td><td>A one-card briefing for someone meeting the kid for the first time.</td></tr>
+    <tr><td>Story for an event</td><td>A short story that prepares the kid for something coming up, like a fire drill or a dentist visit.</td></tr>
+    <tr><td>Log a moment / Patterns</td><td>Record what happened. Over time, look for patterns, with a way to test each one.</td></tr>
+    <tr><td>Review queue</td><td>Anything Bridge thinks it learned waits here. Nothing goes into a kid's profile until a person approves it.</td></tr>
+    <tr><td>Profile</td><td>Everything Bridge knows about this kid, and where each piece came from.</td></tr>
+  </table>
+
+  <h2>The rules it follows</h2>
+  <ul>
+    <li><b>The AI suggests. People decide.</b> Every answer is a guess for a person to check.</li>
+    <li><b>It never speaks for the kid.</b> It only drafts from words the kid chose, and the code checks that no words were added or dropped.</li>
+    <li><b>It can't change a profile on its own.</b> A person has to approve every change.</li>
+    <li><b>Your guess is labeled as a guess.</b> When a counselor saves what they think something meant, it's marked as their interpretation, not a fact.</li>
+    <li><b>The schedule is never AI.</b> For a kid who needs to know what's next, the timing has to be exactly right every time, so it's plain code.</li>
+    <li><b>It knows when it doesn't fit.</b> If the people who know a kid haven't allowed a tool, that tool won't run for that kid.</li>
+  </ul>
+
+  <h2>The kids in the demo</h2>
+  <p>All seven are made up. Each is loosely inspired by camp memories, with names and details changed. Each one tests a different part of the idea.</p>
+  <ul>
+    <li><b>Felix</b> needs to know what's next. A late lunch can undo him.</li>
+    <li><b>Gus</b> talks in route numbers and highway exits.</li>
+    <li><b>Ivy</b> talks through songs, but only with people she has chosen.</li>
+    <li><b>Miles</b> doesn't feel pain, and loves pranks.</li>
+    <li><b>Rowan</b> doesn't speak, and nobody knows yet how much he understands.</li>
+    <li><b>Theo</b> hurts himself when he sees a dog or a balloon.</li>
+    <li><b>Walt</b> says "yes" to everything, so "yes" doesn't mean yes.</li>
+  </ul>
+
+  <h2>Try this</h2>
+  <ol>
+    <li>Pick <b>Felix</b>. Open <b>Plan changed</b>, say lunch is 20 minutes late, and see how it explains the change to him.</li>
+    <li>Pick <b>Ivy</b>. Open <b>How do I talk with them?</b> See why a stranger shouldn't sing to her.</li>
+    <li>Pick <b>Walt</b>. In <b>What did that mean?</b>, describe him saying "yes." See that it won't treat that as agreement.</li>
+    <li>Pick <b>Rowan</b>. Try <b>Help them say it</b>. It refuses, because drafting words for a kid who can't yet choose would put words in his mouth.</li>
+  </ol>
+
+  <h2>About this demo</h2>
+  <ul>
+    <li>Answers come from a free AI model (gpt-oss-120b on Groq). The label at the top right shows which one is answering.</li>
+    <li>To keep it free, the demo gives a limited number of AI answers per day. After that, answers come from a simple rule-based version, and the page tells you when that happens.</li>
+    <li>Everyone using this page shares the same demo data. It resets from time to time.</li>
+    <li>Profile editing is turned off here. You can edit profiles if you run it on your own computer.</li>
+  </ul>
+
+  <h2>What's missing</h2>
+  <p>The most important thing: real profiles, written by people who actually work with these kids. The goal is to get feedback from speech therapists, teachers, aides and parents on what a profile needs to say.</p>
+
+  <h2>The code</h2>
+  <p>Open source under the MIT license. Take anything useful: <a href="https://github.com/soundboy1024/bridge-aac">github.com/soundboy1024/bridge-aac</a></p>
+</main>
+<footer class="foot">Every interpretation is a hypothesis. Every drafted message is a candidate. The person and the people who know them decide.</footer>
+</body>
+</html>
