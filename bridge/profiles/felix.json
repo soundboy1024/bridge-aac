@@ -1,0 +1,127 @@
+{
+  "id": "felix",
+  "displayName": "Felix",
+  "age": 11,
+  "pronouns": "he/him",
+  "summary": "Felix needs to know what is happening next, every time. He does not read and cannot sit for instruction, but he tracks a picture schedule closely and settles when someone walks him through it as each thing happens. Meals are the highest-stakes anchor: if food is called and then doesn't come on time, he unravels fast. He does a spot-on Pee-Wee Herman voice and uses it to connect.",
+  "strengths": ["tracks sequences precisely", "remembers every staff member's name and car", "voice impressions (Pee-Wee Herman)", "helpful with setting tables"],
+  "interests": ["Pee-Wee's Playhouse", "car makes and models", "the camp bell"],
+  "expressive": {
+    "primaryModes": ["single words", "Pee-Wee Herman script lines", "leads adult by the wrist", "points at the schedule board"],
+    "typicalUtteranceLength": "two_three_words",
+    "gestaltProcessor": true,
+    "voiceStyle": "clipped, loud, repeats the key word twice: 'lunch lunch'"
+  },
+  "receptive": {
+    "understandsMoreThanShows": true,
+    "bestWith": ["the picture schedule in hand", "one short sentence", "a time tied to a thing ('after swim')"],
+    "avoid": ["'in a little while'", "'maybe'", "changing the plan without showing it on the board"],
+    "processingTimeSeconds": 8
+  },
+  "lexicon": [
+    {
+      "id": "lex-pw-1",
+      "form": "Pee-Wee voice: 'I know you are but what am I'",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "I like you / let's play", "contexts": ["with a familiar counselor", "relaxed"], "function": "social_bid", "confidence": "core", "provenance": { "source": "caregiver", "confirmedBy": "head counselor", "timesObserved": 40 } },
+        { "gloss": "I'm getting anxious, distract me", "contexts": ["waiting", "line", "before meals"], "function": "self_regulation", "confidence": "established", "provenance": { "source": "therapist", "confirmedBy": "camp SLP", "timesObserved": 12 } }
+      ],
+      "doNotInterpretAs": ["mocking", "defiance"]
+    },
+    {
+      "id": "lex-lunch",
+      "form": "lunch lunch",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "When is lunch? Show me on the board.", "contexts": ["late morning"], "function": "question", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 100 } }
+      ],
+      "doNotInterpretAs": ["I'm hungry right now (he may not be; he wants the time)"]
+    },
+    {
+      "id": "lex-wrist",
+      "form": "takes adult by the wrist and pulls",
+      "modality": "gesture",
+      "meanings": [
+        { "gloss": "Come look at the board with me / I need the plan", "contexts": [], "function": "request", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 60 } }
+      ],
+      "doNotInterpretAs": ["aggression"]
+    },
+    {
+      "id": "lex-bell",
+      "form": "says 'bell bell' and looks at the dining hall",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "The meal bell rang; why aren't we eating? (countdown has started for him)", "contexts": ["after the meal bell"], "function": "distress", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 15 } }
+      ],
+      "doNotInterpretAs": []
+    }
+  ],
+  "sensory": {
+    "seeking": ["pacing", "holding something in each hand"],
+    "avoiding": ["open-ended waiting", "being told 'later'"],
+    "triggers": [
+      {
+        "trigger": "meal called but food not served within ~5 minutes",
+        "earlySigns": ["says 'bell bell'", "pacing by the door", "Pee-Wee script gets faster and louder"],
+        "escalation": "hitting self, then others, within 10 minutes",
+        "whatHelps": ["show the board and a timer: 'food in 4 minutes'", "give him a job: carry the napkins in", "walk with him, no talking"],
+        "whatMakesItWorse": ["'it's coming, be patient'", "crowding him", "more than one adult talking"],
+        "provenance": { "source": "caregiver", "confirmedBy": "head counselor", "timesObserved": 9 }
+      },
+      {
+        "trigger": "schedule changed without showing it on the board",
+        "earlySigns": ["pulls adult by wrist to the board", "repeats the cancelled activity's name"],
+        "escalation": "drops to floor, screams",
+        "whatHelps": ["physically move the picture on the board with him", "say the new next thing with a time"],
+        "whatMakesItWorse": ["explaining why at length", "saying 'maybe later'"],
+        "provenance": { "source": "caregiver", "timesObserved": 6 }
+      }
+    ],
+    "regulators": ["walk the fence line with one adult", "carry something heavy", "look at the board together", "Pee-Wee voice back-and-forth"]
+  },
+  "cues": {
+    "reads": "none",
+    "preferredChannels": ["symbol", "spoken", "sound_motif", "object"],
+    "motifs": [
+      { "meaning": "transition coming", "channel": "sound_motif", "cue": "two soft wood-block taps", "established": true },
+      { "meaning": "meal soon", "channel": "object", "cue": "hand him the napkin stack", "established": true },
+      { "meaning": "big unexpected change", "channel": "sound_motif", "cue": "the slow three-note descending chime", "established": false },
+      { "meaning": "all good", "channel": "gesture", "cue": "thumbs up + 'yep yep'", "established": true }
+    ],
+    "leadTimes": { "transitionWarningMinutes": [10, 5, 1], "waitTimeSeconds": 8 }
+  },
+  "schedule": {
+    "anchors": [
+      { "id": "wake", "label": "wake up", "time": "07:00", "expectedDurationMin": 30, "symbol": "🌅" },
+      { "id": "breakfast", "label": "breakfast", "time": "07:30", "expectedDurationMin": 30, "importance": "critical", "symbol": "🍳" },
+      { "id": "cabin", "label": "cabin clean-up", "afterAnchor": "breakfast", "expectedDurationMin": 30, "symbol": "🧹" },
+      { "id": "swim", "label": "swim", "time": "09:00", "expectedDurationMin": 60, "importance": "high", "symbol": "🏊" },
+      { "id": "arts", "label": "arts and crafts", "afterAnchor": "swim", "expectedDurationMin": 60, "symbol": "🎨" },
+      { "id": "lunch", "label": "lunch", "time": "12:00", "expectedDurationMin": 45, "importance": "critical", "symbol": "🍽️" },
+      { "id": "rest", "label": "rest", "afterAnchor": "lunch", "expectedDurationMin": 60, "symbol": "🛏️" },
+      { "id": "boats", "label": "boats", "time": "14:00", "expectedDurationMin": 60, "symbol": "🚣" },
+      { "id": "free", "label": "free play", "afterAnchor": "boats", "expectedDurationMin": 90, "symbol": "⚽" },
+      { "id": "dinner", "label": "dinner", "time": "17:30", "expectedDurationMin": 45, "importance": "critical", "symbol": "🍽️" },
+      { "id": "campfire", "label": "campfire", "time": "19:00", "expectedDurationMin": 60, "symbol": "🔥" },
+      { "id": "bed", "label": "bed", "time": "20:30", "symbol": "🌙" }
+    ],
+    "changeTolerance": "very_low",
+    "knownHardTransitions": ["swim → anything", "any delay to a meal"]
+  },
+  "people": [
+    { "name": "Casey", "role": "counselor", "notes": "Pee-Wee partner; Felix trusts him with the board", "trusted": true },
+    { "name": "Dana", "role": "head counselor", "trusted": true }
+  ],
+  "goals": [
+    { "id": "g1", "text": "Felix will use the transition cue to move to the next activity with one prompt or fewer in 4 of 5 transitions.", "measure": "prompts per transition" }
+  ],
+  "guardrails": {
+    "aiNeverSpeaksForPerson": true,
+    "maxInterpretations": 3,
+    "bannedPhrases": ["in a little while", "maybe later", "be patient"],
+    "alwaysOfferDecline": true,
+    "requireHumanReviewForNewLexicon": true,
+    "consent": { "guardianConsent": true, "personAssent": "unable_to_determine", "allowedUses": ["interpretation", "composition", "coaching", "insights"] }
+  }
+}

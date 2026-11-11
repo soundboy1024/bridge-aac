@@ -1,0 +1,107 @@
+{
+  "id": "rowan",
+  "displayName": "Rowan",
+  "age": 17,
+  "pronouns": "he/him",
+  "summary": "Rowan doesn't speak and never has. He is even-tempered, sweet, and seventeen — in a parallel universe he's just one of the boys, so that's how the boys treat him: in the conversation, addressed directly, teased gently, included in the plan. Nobody knows how much he understands. We think a lot. The rule is to act as if it's all of it. This profile exists mostly to stop new people from talking over him.",
+  "strengths": ["steady — almost never distressed", "good-natured about everything", "follows a group without being managed", "his face tells you more than most people's words, if you watch"],
+  "interests": ["being with the older boys", "music at the campfire (watches the guitar)", "the lake"],
+  "expressive": {
+    "primaryModes": ["facial expression", "eye gaze", "body orientation (moves toward / away)", "occasional vocalizations"],
+    "typicalUtteranceLength": "none",
+    "gestaltProcessor": false,
+    "voiceStyle": "No words. If we had to guess his voice from his face: dry, amused, unbothered."
+  },
+  "receptive": {
+    "understandsMoreThanShows": true,
+    "bestWith": ["normal conversation, normal speed, addressed to him", "being told the plan like you'd tell anyone", "a pause where his answer would go"],
+    "avoid": ["talking about him in front of him in the third person", "baby voice", "assuming silence means absence"],
+    "processingTimeSeconds": 15,
+    "responseBias": { "kind": "unknown", "notes": "No reliable yes/no channel has been established. Gaze shift toward an offered object is the best we have." },
+    "comprehensionKnown": false
+  },
+  "lexicon": [
+    {
+      "id": "lex-half-smile",
+      "form": "half-smile with eyes to the side when the boys are joking",
+      "modality": "gesture",
+      "meanings": [
+        { "gloss": "I got the joke / I'm in on this", "contexts": ["group banter"], "function": "social_bid", "confidence": "established", "provenance": { "source": "caregiver", "confirmedBy": "Dev (counselor, closest to him)", "timesObserved": 40 } }
+      ],
+      "doNotInterpretAs": ["random", "a reflex"]
+    },
+    {
+      "id": "lex-gaze-hold",
+      "form": "holds his gaze on one of two offered objects for 3+ seconds",
+      "modality": "gesture",
+      "meanings": [
+        { "gloss": "That one", "contexts": ["a two-object choice is being offered"], "function": "request", "confidence": "emerging", "provenance": { "source": "caregiver", "confirmedBy": "Dev", "timesObserved": 9 } }
+      ],
+      "doNotInterpretAs": ["staring into space"],
+      "notes": "Our only candidate yes/no channel. Offer two things, hold them apart, wait 15 seconds. Log every trial so we find out whether it's real."
+    },
+    {
+      "id": "lex-turn-away",
+      "form": "turns his whole body away from a person or activity",
+      "modality": "gesture",
+      "meanings": [
+        { "gloss": "No / not this / not now", "contexts": [], "function": "protest", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 25 } }
+      ],
+      "doNotInterpretAs": ["tired", "wandering"]
+    },
+    {
+      "id": "lex-low-hum",
+      "form": "low steady hum, rocking slightly",
+      "modality": "vocalization",
+      "meanings": [
+        { "gloss": "Content; settled", "contexts": ["campfire", "evenings"], "function": "self_regulation", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 30 } }
+      ],
+      "doNotInterpretAs": ["distress", "boredom"]
+    }
+  ],
+  "sensory": {
+    "seeking": ["sitting close in a group", "water", "guitar sound"],
+    "avoiding": [],
+    "triggers": [],
+    "regulators": ["being near the group", "the lake", "campfire music"]
+  },
+  "cues": {
+    "reads": "none",
+    "preferredChannels": ["spoken", "object", "gesture"],
+    "motifs": [
+      { "meaning": "transition coming", "channel": "spoken", "cue": "'Rowan — five minutes, then lunch. You coming?' (and wait)", "established": true },
+      { "meaning": "your turn / your choice", "channel": "object", "cue": "two objects held apart at eye level", "established": false }
+    ],
+    "leadTimes": { "transitionWarningMinutes": [5], "waitTimeSeconds": 15 }
+  },
+  "schedule": {
+    "anchors": [
+      { "id": "breakfast", "label": "breakfast", "time": "08:00", "expectedDurationMin": 30, "symbol": "🍳" },
+      { "id": "lake", "label": "lake", "time": "10:30", "expectedDurationMin": 60, "importance": "high", "symbol": "🌊" },
+      { "id": "lunch", "label": "lunch", "time": "12:00", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "dinner", "label": "dinner", "time": "17:30", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "campfire", "label": "campfire", "time": "19:30", "expectedDurationMin": 60, "importance": "high", "symbol": "🔥" },
+      { "id": "bed", "label": "bed", "time": "21:30", "symbol": "🌙" }
+    ],
+    "changeTolerance": "ok",
+    "knownHardTransitions": []
+  },
+  "people": [
+    { "name": "Dev", "role": "counselor", "notes": "bonded with him deeply; the person to ask", "trusted": true },
+    { "name": "Casey", "role": "counselor", "trusted": true }
+  ],
+  "goals": [
+    { "id": "g1", "text": "Establish whether gaze-hold is a reliable choice channel: 30 logged two-object trials, scored blind by a second staff member.", "owner": "Dev + SLP", "measure": "agreement rate between gaze-hold and the object he then accepts" },
+    { "id": "g2", "text": "Every staff member addresses Rowan directly and pauses for him in every group plan.", "owner": "staff", "measure": "peer observation" }
+  ],
+  "safetyAlerts": [],
+  "fit": { "level": "partial", "note": "The Interpreter has very little to work with and should say so. The value here is the Coach (stop people talking over him) and the Insights log (find out if gaze-hold is real). The Composer should not be used until a choice channel is established — drafting 'his' words before he can pick one is exactly the facilitated-communication trap." },
+  "guardrails": {
+    "aiNeverSpeaksForPerson": true,
+    "maxInterpretations": 2,
+    "bannedPhrases": ["he doesn't understand", "he's not in there", "he won't know the difference"],
+    "alwaysOfferDecline": true,
+    "requireHumanReviewForNewLexicon": true,
+    "consent": { "guardianConsent": true, "personAssent": "unable_to_determine", "allowedUses": ["interpretation", "coaching", "insights"] }
+  }
+}

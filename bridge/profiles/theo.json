@@ -1,0 +1,130 @@
+{
+  "id": "theo",
+  "displayName": "Theo",
+  "age": 11,
+  "pronouns": "he/him",
+  "summary": "Theo is gentle, affectionate, and easy to be with — until he sees a dog or a balloon. Then he bites his wrist and hits the side of his head, hard, and cannot hear you until the thing is gone. The fear is real and specific; it is not about attention. The job is to see the dog before he does. He speaks in short phrases and loves being read to.",
+  "strengths": ["warm with everyone", "recovers quickly once the trigger is out of sight", "will accept a hand on the shoulder from people he knows", "remembers every story read to him"],
+  "interests": ["picture books about trucks", "the camp tractor", "being pushed on the tire swing"],
+  "expressive": {
+    "primaryModes": ["two- and three-word phrases", "leads by hand", "points"],
+    "typicalUtteranceLength": "two_three_words",
+    "gestaltProcessor": false,
+    "voiceStyle": "soft, a little breathy; 'Casey swing?', 'tractor go'"
+  },
+  "receptive": {
+    "understandsMoreThanShows": true,
+    "bestWith": ["short plain sentences", "telling him what is coming, including what is NOT there ('no dogs at the lake today')"],
+    "avoid": ["surprises", "minimizing the fear", "holding his arms when he bites"],
+    "processingTimeSeconds": 8,
+    "responseBias": { "kind": "none" },
+    "comprehensionKnown": true
+  },
+  "lexicon": [
+    {
+      "id": "lex-wrist",
+      "form": "bites his own wrist",
+      "modality": "behavior",
+      "meanings": [
+        { "gloss": "I see a dog or a balloon (or think I'm about to) and I'm terrified", "contexts": ["outdoors", "parties", "town trips"], "function": "distress", "confidence": "core", "provenance": { "source": "caregiver", "confirmedBy": "parent", "timesObserved": 40 } }
+      ],
+      "doNotInterpretAs": ["attention seeking", "frustration with a task", "anger at you"]
+    },
+    {
+      "id": "lex-all-gone",
+      "form": "says 'all gone?' looking at you",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "Is the scary thing gone? Tell me honestly.", "contexts": ["after a dog or balloon"], "function": "question", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 25 } }
+      ],
+      "doNotInterpretAs": ["asking about food"],
+      "notes": "Answer truthfully. If it is not gone, say where it is and that you are between him and it. A false 'all gone' costs you his trust for weeks."
+    },
+    {
+      "id": "lex-read",
+      "form": "brings a book and sits on your feet",
+      "modality": "object",
+      "meanings": [
+        { "gloss": "Read to me; I'm okay and I want to be near you", "contexts": [], "function": "request", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 60 } }
+      ],
+      "doNotInterpretAs": []
+    },
+    {
+      "id": "lex-tractor-go",
+      "form": "says 'tractor go'",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "I want to watch the tractor / can we go to the barn", "contexts": ["morning"], "function": "request", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 15 } },
+        { "gloss": "I'm happy (comment)", "contexts": ["already at the barn"], "function": "joy", "confidence": "emerging", "provenance": { "source": "caregiver", "timesObserved": 5 } }
+      ],
+      "doNotInterpretAs": []
+    }
+  ],
+  "sensory": {
+    "seeking": ["swinging", "sitting on people's feet", "deep pressure hugs from known people"],
+    "avoiding": ["dogs", "balloons (any, including deflated ones and balloon pictures)", "sudden loud pops"],
+    "triggers": [
+      {
+        "trigger": "a dog, anywhere in sight or earshot",
+        "category": "phobic",
+        "scanAhead": true,
+        "earlySigns": ["goes still", "hand drifts to mouth", "breathing gets fast"],
+        "escalation": "bites wrist hard enough to bruise, hits head with open hand, can't hear words for 2–5 minutes",
+        "whatHelps": ["get your body between him and the dog and move him away without talking", "once it's out of sight say 'dog gone. Theo safe.'", "then a tire-swing or a book"],
+        "whatMakesItWorse": ["'it's friendly', 'it won't hurt you'", "making him stay to 'get used to it'", "holding his wrists"],
+        "provenance": { "source": "caregiver", "confirmedBy": "parent + camp nurse", "timesObserved": 30 }
+      },
+      {
+        "trigger": "balloons — including a bag of uninflated ones",
+        "category": "phobic",
+        "scanAhead": true,
+        "earlySigns": ["goes still", "hand to mouth"],
+        "escalation": "same as dogs",
+        "whatHelps": ["remove the balloons, not Theo, if at all possible", "tell him the plan: 'balloons go in the closet. Then we go in.'"],
+        "whatMakesItWorse": ["popping one to 'get it over with'", "laughing"],
+        "provenance": { "source": "caregiver", "timesObserved": 12 }
+      }
+    ],
+    "regulators": ["tire swing", "a book on your lap", "the barn"]
+  },
+  "cues": {
+    "reads": "none",
+    "preferredChannels": ["spoken", "photo"],
+    "motifs": [
+      { "meaning": "all clear / checked, no dogs, no balloons", "channel": "spoken", "cue": "thumbs up + 'Theo safe'", "established": true },
+      { "meaning": "transition coming", "channel": "spoken", "cue": "'two more pushes, then…'", "established": true }
+    ],
+    "leadTimes": { "transitionWarningMinutes": [5, 1], "waitTimeSeconds": 8 }
+  },
+  "schedule": {
+    "anchors": [
+      { "id": "breakfast", "label": "breakfast", "time": "08:00", "expectedDurationMin": 30, "symbol": "🍳" },
+      { "id": "barn", "label": "barn / tractor", "afterAnchor": "breakfast", "expectedDurationMin": 45, "importance": "high", "symbol": "🚜" },
+      { "id": "swim", "label": "swim", "time": "10:30", "expectedDurationMin": 60, "symbol": "🏊" },
+      { "id": "lunch", "label": "lunch", "time": "12:00", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "rest", "label": "rest + book", "time": "13:00", "expectedDurationMin": 60, "importance": "high", "symbol": "📖" },
+      { "id": "dinner", "label": "dinner", "time": "17:30", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "bed", "label": "bed", "time": "20:30", "symbol": "🌙" }
+    ],
+    "changeTolerance": "moderate",
+    "knownHardTransitions": ["any trip off camp (dogs in town)", "birthday parties (balloons)"]
+  },
+  "people": [
+    { "name": "Casey", "role": "counselor", "notes": "reads to him; allowed to hold his shoulder", "trusted": true },
+    { "name": "Dana", "role": "camp nurse", "notes": "checks his wrist after episodes", "trusted": true }
+  ],
+  "goals": [
+    { "id": "g1", "text": "Theo will say or sign 'scared' before biting, at least once a week, with a partner modelling it.", "measure": "staff log: 'scared' used before or instead of biting" },
+    { "id": "g2", "text": "Staff will scan every new setting for dogs/balloons before Theo enters, every time.", "owner": "staff", "measure": "zero surprise exposures logged" }
+  ],
+  "safetyAlerts": ["Self-injury (wrist biting, head hitting) when he sees a dog or balloon. Scan ahead. Do not hold his wrists — block and move."],
+  "fit": { "level": "full" },
+  "guardrails": {
+    "aiNeverSpeaksForPerson": true,
+    "maxInterpretations": 3,
+    "bannedPhrases": ["it's just a balloon", "it won't hurt you", "it's friendly", "be brave"],
+    "alwaysOfferDecline": true,
+    "requireHumanReviewForNewLexicon": true,
+    "consent": { "guardianConsent": true, "personAssent": "unable_to_determine", "allowedUses": ["interpretation", "coaching", "insights"] }
+  }
+}

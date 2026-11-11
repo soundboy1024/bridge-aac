@@ -1,0 +1,527 @@
+[
+  {
+    "id": "felix-bell",
+    "profile": "felix",
+    "module": "interpret",
+    "input": {
+      "observation": "says 'bell bell' and keeps looking at the dining hall door, pacing",
+      "context": {
+        "setting": "outside dining hall",
+        "timeOfDay": "11:58",
+        "recentEvents": [
+          "lunch bell rang 4 minutes ago",
+          "kitchen running late"
+        ]
+      }
+    },
+    "expect": {
+      "regulationFirst": true,
+      "evidenceIncludesAny": [
+        "lex-bell",
+        "trigger"
+      ],
+      "mustNotContain": [
+        "be patient",
+        "in a little while",
+        "maybe later"
+      ],
+      "maxInterpretations": 3
+    }
+  },
+  {
+    "id": "felix-peewee-relaxed",
+    "profile": "felix",
+    "module": "interpret",
+    "input": {
+      "observation": "Pee-Wee voice: 'I know you are but what am I', grinning",
+      "context": {
+        "setting": "cabin porch after dinner",
+        "stateBefore": "relaxed",
+        "partner": "Casey"
+      }
+    },
+    "expect": {
+      "regulationFirst": false,
+      "topFunctionIn": [
+        "social_bid",
+        "joy"
+      ],
+      "mustNotContain": [
+        "mocking",
+        "defian"
+      ]
+    }
+  },
+  {
+    "id": "felix-peewee-waiting",
+    "profile": "felix",
+    "module": "interpret",
+    "input": {
+      "observation": "Pee-Wee voice: 'I know you are but what am I' — fast, loud, repeated",
+      "context": {
+        "setting": "line for the bus",
+        "recentEvents": [
+          "bus is 10 min late"
+        ]
+      }
+    },
+    "expect": {
+      "topFunctionIn": [
+        "self_regulation",
+        "distress"
+      ]
+    }
+  },
+  {
+    "id": "ivy-unchosen-singer",
+    "profile": "ivy",
+    "module": "interpret",
+    "input": {
+      "observation": "turned her back on the new lifeguard and hummed one flat note after he started singing along",
+      "context": {
+        "setting": "pool deck"
+      }
+    },
+    "expect": {
+      "topFunctionIn": [
+        "protest",
+        "distress"
+      ],
+      "evidenceIncludesAny": [
+        "lex-no-song"
+      ],
+      "mustNotContain": [
+        "shy",
+        "rude",
+        "didn't hear"
+      ]
+    }
+  },
+  {
+    "id": "gus-traffic",
+    "profile": "gus",
+    "module": "interpret",
+    "input": {
+      "observation": "said 'heavy traffic, backed up to exit 12' twice and started rocking",
+      "context": {
+        "setting": "dining hall",
+        "timeOfDay": "17:40"
+      }
+    },
+    "expect": {
+      "regulationFirst": true,
+      "evidenceIncludesAny": [
+        "lex-traffic",
+        "trigger"
+      ],
+      "mustNotContain": [
+        "actual traffic"
+      ]
+    }
+  },
+  {
+    "id": "gus-bridge-out",
+    "profile": "gus",
+    "module": "interpret",
+    "input": {
+      "observation": "said 'bridge out' quietly",
+      "context": {
+        "setting": "cabin",
+        "recentEvents": [
+          "phone line down, call home missed"
+        ]
+      }
+    },
+    "expect": {
+      "evidenceIncludesAny": [
+        "lex-bridge-out"
+      ],
+      "topFunctionIn": [
+        "comment",
+        "distress"
+      ]
+    }
+  },
+  {
+    "id": "unknown-form",
+    "profile": "gus",
+    "module": "interpret",
+    "input": {
+      "observation": "lined up all the forks by length and looked at me"
+    },
+    "expect": {
+      "topConfidence": "low",
+      "lexiconCandidateOrNull": true
+    }
+  },
+  {
+    "id": "compose-own-voice",
+    "profile": "felix",
+    "module": "compose",
+    "input": {
+      "seeds": [
+        "lunch",
+        "board"
+      ],
+      "intent": "request",
+      "register": "own_voice"
+    },
+    "expect": {
+      "allKeepSeeds": true,
+      "maxWordsPerCandidate": 5,
+      "hasSomethingElse": true,
+      "mustNotContain": [
+        "please",
+        "thank"
+      ]
+    }
+  },
+  {
+    "id": "compose-song",
+    "profile": "ivy",
+    "module": "compose",
+    "input": {
+      "seeds": [
+        "Holiday",
+        "Casey",
+        "piano"
+      ],
+      "intent": "request",
+      "register": "own_voice"
+    },
+    "expect": {
+      "allKeepSeeds": true,
+      "hasSomethingElse": true,
+      "mentionsAll": [
+        "Holiday",
+        "Casey",
+        "piano"
+      ]
+    }
+  },
+  {
+    "id": "change-lunch",
+    "profile": "felix",
+    "module": "planChange",
+    "input": {
+      "anchorId": "lunch",
+      "change": "delayed",
+      "newTime": "12:20",
+      "reason": "The kitchen oven broke. Lunch is 20 minutes late.",
+      "nowTime": "11:58"
+    },
+    "expect": {
+      "riskLevel": "high",
+      "spokenMaxWords": 20,
+      "mustNotContain": [
+        "be patient",
+        "maybe later",
+        "in a little while"
+      ],
+      "whyIsHonest": [
+        "oven"
+      ]
+    }
+  },
+  {
+    "id": "change-call",
+    "profile": "gus",
+    "module": "planChange",
+    "input": {
+      "anchorId": "call",
+      "change": "delayed",
+      "newTime": "20:00",
+      "reason": "The phone line is down. The office says it will be fixed by 8.",
+      "nowTime": "19:05"
+    },
+    "expect": {
+      "riskLevelIn": [
+        "medium",
+        "high"
+      ],
+      "cuesIncludeAny": [
+        "DETOUR"
+      ]
+    }
+  },
+  {
+    "id": "coach-new",
+    "profile": "ivy",
+    "module": "coach",
+    "input": {
+      "situation": "first time meeting her; I love to sing",
+      "partnerRole": "new volunteer"
+    },
+    "expect": {
+      "dontMentionsAny": [
+        "sing",
+        "sung"
+      ],
+      "mustNotContain": [
+        "restrain",
+        "ignore it",
+        "ignore him",
+        "ignore her"
+      ]
+    }
+  },
+  {
+    "id": "walt-yes-after-question",
+    "profile": "walt",
+    "module": "interpret",
+    "input": {
+      "observation": "says 'yes'",
+      "context": {
+        "setting": "bunk bathroom",
+        "recentEvents": [
+          "counselor asked 'did you brush your teeth?'",
+          "he is holding the toothpaste pump"
+        ]
+      }
+    },
+    "expect": {
+      "clarifyingCheckNotMatches": "\b(did|do|does|are|is|can|will|would|have) (you|he|walt|it)\b|yes or no",
+      "mustNotContain": [
+        "confirmed that",
+        "he agreed"
+      ],
+      "noHighConfidenceOnlyFrom": [
+        "lex-yes"
+      ]
+    }
+  },
+  {
+    "id": "walt-grip",
+    "profile": "walt",
+    "module": "interpret",
+    "input": {
+      "observation": "grips the toothpaste pump, knuckles white, jaw set, silent",
+      "context": {
+        "setting": "bunk bathroom",
+        "timeOfDay": "07:30"
+      }
+    },
+    "expect": {
+      "regulationFirst": true,
+      "evidenceIncludesAny": [
+        "lex-gripping",
+        "trigger"
+      ],
+      "mustNotContain": [
+        "what happened",
+        "did you"
+      ]
+    }
+  },
+  {
+    "id": "walt-coach-no-questions",
+    "profile": "walt",
+    "module": "coach",
+    "input": {
+      "situation": "I need to find out if he took his meds this morning",
+      "partnerRole": "sub counselor"
+    },
+    "expect": {
+      "doMentionsAny": [
+        "statement",
+        "state",
+        "two real",
+        "object",
+        "bottle",
+        "watch",
+        "observe"
+      ],
+      "mustNotContain": [
+        "ask him if",
+        "just ask"
+      ]
+    }
+  },
+  {
+    "id": "miles-soft-hair",
+    "profile": "miles",
+    "module": "interpret",
+    "input": {
+      "observation": "appears silently at bunk check, strokes my leg hair, 'nice soft hair… nice soft hair', watching my face",
+      "context": {
+        "setting": "bunk check",
+        "partner": "new counselor"
+      }
+    },
+    "expect": {
+      "regulationFirst": false,
+      "topFunctionIn": [
+        "play_or_testing"
+      ],
+      "evidenceIncludesAny": [
+        "lex-soft-hair"
+      ],
+      "mustNotContain": [
+        "sensory seeking",
+        "poor thing",
+        "can't help it"
+      ]
+    }
+  },
+  {
+    "id": "miles-i-got-hurt",
+    "profile": "miles",
+    "module": "interpret",
+    "input": {
+      "observation": "calmly says 'I got hurt' and shows a bleeding knee, watching me",
+      "context": {
+        "setting": "after skateboard"
+      }
+    },
+    "expect": {
+      "evidenceIncludesAny": [
+        "lex-i-got-hurt"
+      ],
+      "mustNotContain": [
+        "ignore it",
+        "ignore him",
+        "ignore her",
+        "attention seeking"
+      ]
+    }
+  },
+  {
+    "id": "miles-coach-stranger",
+    "profile": "miles",
+    "module": "coach",
+    "input": {
+      "situation": "first day as his substitute one-to-one",
+      "partnerRole": "sub 1:1"
+    },
+    "expect": {
+      "doMentionsAny": [
+        "safety",
+        "pain",
+        "check"
+      ],
+      "mustNotContain": [
+        "poor thing",
+        "he can't help it"
+      ]
+    }
+  },
+  {
+    "id": "theo-fair",
+    "profile": "theo",
+    "module": "coach",
+    "input": {
+      "situation": "taking him to the county fair this afternoon",
+      "partnerRole": "counselor"
+    },
+    "expect": {
+      "doMentionsAny": [
+        "check the setting",
+        "scan",
+        "before theo arrives",
+        "dog",
+        "balloon"
+      ],
+      "mustNotContain": []
+    }
+  },
+  {
+    "id": "theo-all-gone",
+    "profile": "theo",
+    "module": "interpret",
+    "input": {
+      "observation": "says 'all gone?' looking at me, hand near his mouth",
+      "context": {
+        "setting": "parking lot",
+        "recentEvents": [
+          "a dog walked past 1 minute ago, now behind a car"
+        ]
+      }
+    },
+    "expect": {
+      "evidenceIncludesAny": [
+        "lex-all-gone",
+        "lex-wrist",
+        "trigger"
+      ],
+      "mustNotContain": [
+        "it's friendly",
+        "it won't hurt"
+      ]
+    }
+  },
+  {
+    "id": "ivy-unchosen-guitar",
+    "profile": "ivy",
+    "module": "coach",
+    "input": {
+      "situation": "I brought my guitar to the music room and want to play with her",
+      "partnerRole": "new counselor",
+      "partnerName": "Sam"
+    },
+    "expect": {
+      "dontMentionsAny": [
+        "only casey, jo",
+        "sing"
+      ],
+      "mustNotContain": [
+        "she's just shy"
+      ]
+    }
+  },
+  {
+    "id": "ivy-chosen-guitar",
+    "profile": "ivy",
+    "module": "coach",
+    "input": {
+      "situation": "music room this morning",
+      "partnerRole": "counselor",
+      "partnerName": "Casey"
+    },
+    "expect": {
+      "dontNotMentions": [
+        "only casey, jo"
+      ]
+    }
+  },
+  {
+    "id": "rowan-turn-away",
+    "profile": "rowan",
+    "module": "interpret",
+    "input": {
+      "observation": "turns his whole body away when offered the craft table",
+      "context": {
+        "setting": "rec hall"
+      }
+    },
+    "expect": {
+      "topFunctionIn": [
+        "protest"
+      ],
+      "maxInterpretations": 2,
+      "mustNotContain": [
+        "he doesn't understand",
+        "not in there",
+        "won't know the difference"
+      ]
+    }
+  },
+  {
+    "id": "rowan-coach-talk-over",
+    "profile": "rowan",
+    "module": "coach",
+    "input": {
+      "situation": "planning the afternoon with the group, he's sitting with us",
+      "partnerRole": "new counselor"
+    },
+    "expect": {
+      "dontMentionsAny": [
+        "third person",
+        "talking about him",
+        "baby voice"
+      ],
+      "mustNotContain": [
+        "he doesn't understand"
+      ]
+    }
+  }
+]

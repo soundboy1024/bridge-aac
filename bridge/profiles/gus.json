@@ -1,0 +1,121 @@
+{
+  "id": "gus",
+  "displayName": "Gus",
+  "age": 16,
+  "pronouns": "he/him",
+  "summary": "Gus has memorized the road atlas. He talks in route numbers, exits and town names, and that is not random — it is how he says where he's been, where he wants to go, who he's thinking about (people are the roads to their houses), and how he feels (traffic, detours, closed bridges). Fluent reader. Spoken language outside the road domain is sparse and effortful.",
+  "strengths": ["complete recall of the US highway system", "calm in cars", "precise", "patient teacher when the topic is roads"],
+  "interests": ["road atlases", "highway signs", "bridge engineering", "weather radar"],
+  "expressive": {
+    "primaryModes": ["route-number sequences", "place names", "typed text", "drawing maps"],
+    "typicalUtteranceLength": "phrases_scripts",
+    "gestaltProcessor": false,
+    "voiceStyle": "flat, precise, lists: 'Route 9, Route 84 west, exit 3'"
+  },
+  "receptive": {
+    "understandsMoreThanShows": true,
+    "bestWith": ["map metaphors", "written text", "being asked yes/no questions in road terms"],
+    "avoid": ["'how do you feel?'", "idioms", "being interrupted mid-route"],
+    "processingTimeSeconds": 6
+  },
+  "lexicon": [
+    {
+      "id": "lex-route-home",
+      "form": "Route 9 to Route 84 west, exit 3",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "I want to go home / I'm thinking about home", "contexts": [], "function": "request", "confidence": "core", "provenance": { "source": "caregiver", "confirmedBy": "mother", "timesObserved": 50 } }
+      ],
+      "doNotInterpretAs": ["just reciting"]
+    },
+    {
+      "id": "lex-detour",
+      "form": "says 'detour' or 'road closed'",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "The plan changed and I don't like it", "contexts": [], "function": "protest", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 18 } }
+      ],
+      "doNotInterpretAs": []
+    },
+    {
+      "id": "lex-traffic",
+      "form": "says 'heavy traffic' or 'backed up to exit'",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "Too many people / too much noise here", "contexts": ["crowded room", "dining hall"], "function": "distress", "confidence": "established", "provenance": { "source": "therapist", "timesObserved": 9 } }
+      ],
+      "doNotInterpretAs": ["a comment on actual traffic"]
+    },
+    {
+      "id": "lex-bridge-out",
+      "form": "says 'bridge out'",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "I can't reach someone / someone I care about is gone or unavailable", "contexts": ["after a staff member leaves", "after a missed phone call home"], "function": "comment", "confidence": "emerging", "provenance": { "source": "caregiver", "timesObserved": 3 } }
+      ],
+      "doNotInterpretAs": []
+    },
+    {
+      "id": "lex-scenic",
+      "form": "says 'scenic route'",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "I'm enjoying this, no rush", "contexts": [], "function": "joy", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 12 } }
+      ],
+      "doNotInterpretAs": []
+    }
+  ],
+  "sensory": {
+    "seeking": ["car rides", "tracing maps with a finger"],
+    "avoiding": ["dining hall noise", "being touched on the head"],
+    "triggers": [
+      {
+        "trigger": "crowded, loud rooms",
+        "earlySigns": ["'heavy traffic'", "rocking", "reciting routes faster"],
+        "escalation": "bolts from the room",
+        "whatHelps": ["offer the hallway bench ('rest area')", "headphones", "atlas"],
+        "whatMakesItWorse": ["blocking the door", "loud reassurance"],
+        "provenance": { "source": "caregiver", "timesObserved": 7 }
+      }
+    ],
+    "regulators": ["atlas time", "walk to the parking lot to name the cars' home states by plate", "weather radar on a tablet"]
+  },
+  "cues": {
+    "reads": "fluent",
+    "preferredChannels": ["text", "spoken", "symbol"],
+    "motifs": [
+      { "meaning": "transition coming", "channel": "text", "cue": "a written 'NEXT EXIT: <activity> — 5 MI' card", "established": true },
+      { "meaning": "big unexpected change", "channel": "text", "cue": "orange 'DETOUR' card with the new route written under it", "established": true },
+      { "meaning": "all good", "channel": "spoken", "cue": "'clear road'", "established": true }
+    ],
+    "leadTimes": { "transitionWarningMinutes": [10, 5], "waitTimeSeconds": 6 }
+  },
+  "schedule": {
+    "anchors": [
+      { "id": "breakfast", "label": "breakfast", "time": "07:45", "expectedDurationMin": 30, "symbol": "🍳" },
+      { "id": "hike", "label": "hike", "time": "09:00", "expectedDurationMin": 90, "importance": "high", "symbol": "🥾" },
+      { "id": "lunch", "label": "lunch", "time": "12:00", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "quiet", "label": "quiet time (atlas)", "afterAnchor": "lunch", "expectedDurationMin": 60, "importance": "high", "symbol": "🗺️" },
+      { "id": "pool", "label": "pool", "time": "14:30", "expectedDurationMin": 60, "symbol": "🏊" },
+      { "id": "dinner", "label": "dinner", "time": "17:30", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "call", "label": "phone call home", "time": "19:00", "expectedDurationMin": 15, "importance": "critical", "symbol": "📞" },
+      { "id": "bed", "label": "bed", "time": "21:30", "symbol": "🌙" }
+    ],
+    "changeTolerance": "low",
+    "knownHardTransitions": ["missed or moved phone call home"]
+  },
+  "people": [
+    { "name": "Mom", "role": "parent", "notes": "'Route 84 west' is her", "trusted": true },
+    { "name": "Casey", "role": "counselor", "trusted": true }
+  ],
+  "goals": [
+    { "id": "g1", "text": "Gus will use 'rest area' (ask for a break) before 'heavy traffic' escalates in 3 of 4 crowded-room situations.", "measure": "staff log: break requested before/after early signs" }
+  ],
+  "guardrails": {
+    "aiNeverSpeaksForPerson": true,
+    "maxInterpretations": 3,
+    "alwaysOfferDecline": true,
+    "requireHumanReviewForNewLexicon": true,
+    "consent": { "guardianConsent": true, "personAssent": "yes", "allowedUses": ["interpretation", "composition", "coaching", "insights"] }
+  }
+}

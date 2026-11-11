@@ -1,0 +1,139 @@
+{
+  "id": "miles",
+  "displayName": "Miles",
+  "age": 13,
+  "pronouns": "he/him",
+  "summary": "Miles is tiny, bony, moves with difficulty, and does not feel pain. He is also the funniest, most devious kid in the dorm and he knows exactly how he looks to strangers. When he senses someone is uncomfortable with him he dials every eccentricity up to eleven and watches them run. A lot of what Miles does is on purpose. Treating it all as distress or disability misses him completely — and teaches him that the performance works. Treat it as humor when it's humor, as a safety problem when it's a safety problem, and keep a straight face.",
+  "strengths": ["sharp, fast sense of humor", "reads people's discomfort instantly", "fearless", "deeply attached to his one-to-one and she to him", "wants to learn physical things (skateboarding) despite his body"],
+  "interests": ["skateboarding — being held and run along on the board", "freaking people out", "his one-to-one, Lena"],
+  "expressive": {
+    "primaryModes": ["full sentences, quiet and sly", "performance / exaggerated mannerisms", "sneaking up"],
+    "typicalUtteranceLength": "sentences",
+    "gestaltProcessor": false,
+    "voiceStyle": "quiet, sing-song, deadpan. 'Nice soft hair… nice soft hair.' He knows it's funny.",
+    "registers": [
+      { "name": "the creep-out act (leg-hair rubbing, exaggerated stares, sudden appearances)", "authorizedPartners": [], "ifUnauthorized": "Anyone can be a target. The right response is flat and friendly; the wrong response is flinching, which is the payoff." }
+    ]
+  },
+  "receptive": {
+    "understandsMoreThanShows": true,
+    "bestWith": ["talking to him like the sharp 13-year-old he is", "humor back", "plain safety rules stated once, as facts"],
+    "avoid": ["baby talk", "visible discomfort", "pretending you didn't notice a stunt", "long safety lectures"],
+    "processingTimeSeconds": 3,
+    "responseBias": { "kind": "none" },
+    "comprehensionKnown": true
+  },
+  "lexicon": [
+    {
+      "id": "lex-soft-hair",
+      "form": "sneaks up at bunk check and strokes your leg hair saying 'nice soft hair… nice soft hair'",
+      "modality": "behavior",
+      "meanings": [
+        { "gloss": "Testing you / making you jump because it's funny", "contexts": ["bunk check", "new staff", "anyone visibly uneasy"], "function": "play_or_testing", "confidence": "core", "provenance": { "source": "caregiver", "confirmedBy": "Casey", "timesObserved": 50 } }
+      ],
+      "doNotInterpretAs": ["sensory seeking", "a sexual behavior", "confusion about boundaries"],
+      "notes": "He does it to people who will flinch. Don't flinch. 'Hi Miles. Bed.' ends it; a shriek guarantees a repeat."
+    },
+    {
+      "id": "lex-dial-up",
+      "form": "exaggerates his gait, stare, and mannerisms when a stranger looks uncomfortable",
+      "modality": "behavior",
+      "meanings": [
+        { "gloss": "You're scared of me, so I'll give you something to be scared of — and I'm in charge of that, not you", "contexts": ["strangers", "visitors", "new counselors"], "function": "play_or_testing", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 30 } },
+        { "gloss": "Hurt by how people look at him (underneath the joke)", "contexts": [], "function": "distress", "confidence": "emerging", "provenance": { "source": "caregiver", "confirmedBy": "Lena (1:1)", "timesObserved": 5 } }
+      ],
+      "doNotInterpretAs": ["a seizure or medical event", "loss of control"]
+    },
+    {
+      "id": "lex-bite",
+      "form": "bites someone — hard, fast, from close range, often while they're resting",
+      "modality": "behavior",
+      "meanings": [
+        { "gloss": "A stunt that crossed the line; he is testing what happens", "contexts": ["rest hour", "someone asleep or not watching"], "function": "play_or_testing", "confidence": "established", "provenance": { "source": "caregiver", "confirmedBy": "Casey", "timesObserved": 3 } }
+      ],
+      "doNotInterpretAs": ["aggression from distress", "hunger"],
+      "notes": "Hard no, stated once, flat. Then move on. The reaction is the reward; the boundary is the message."
+    },
+    {
+      "id": "lex-skateboard",
+      "form": "drags the skateboard to you and stands on it, holding his arms out",
+      "modality": "object",
+      "meanings": [
+        { "gloss": "Hold me and run me around on the board", "contexts": [], "function": "request", "confidence": "core", "provenance": { "source": "caregiver", "confirmedBy": "Casey", "timesObserved": 40 } }
+      ],
+      "doNotInterpretAs": [],
+      "notes": "This is the real Miles. He never falls when held. Say yes often."
+    },
+    {
+      "id": "lex-i-got-hurt",
+      "form": "announces 'I got hurt' or shows an injury, calm, watching your face",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "Someone will get in trouble now — and I know it", "contexts": [], "function": "play_or_testing", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 12 } },
+        { "gloss": "Genuine injury he can't feel and wants checked", "contexts": [], "function": "request", "confidence": "established", "provenance": { "source": "caregiver", "confirmedBy": "nurse", "timesObserved": 12 } }
+      ],
+      "doNotInterpretAs": ["pain (he doesn't feel it)"],
+      "notes": "Both can be true at once. ALWAYS check the injury — he cannot feel it, so it may be worse than it looks. Keep your face boring while you do."
+    }
+  ],
+  "sensory": {
+    "seeking": ["speed (skateboard, being pushed fast)", "reactions from people"],
+    "avoiding": ["being ignored", "being pitied"],
+    "triggers": [
+      {
+        "trigger": "unsupervised access to outlets, forks, heights, anything that would hurt a kid who could feel it",
+        "category": "other",
+        "scanAhead": true,
+        "earlySigns": ["goes quiet", "slides out of sight (under the table)", "you can't see him"],
+        "escalation": "fork in the outlet; smashing himself into things; crawls somewhere he can't get out of",
+        "whatHelps": ["eyes on him always; if you can't see him, find him", "outlet covers in every room he uses", "give him a real, slightly dangerous-feeling job (pushing the cart fast) so he doesn't invent one"],
+        "whatMakesItWorse": ["a big reaction when he's caught", "long lectures", "treating injury-checks as punishment"],
+        "provenance": { "source": "caregiver", "confirmedBy": "nurse + Lena", "timesObserved": 20 }
+      }
+    ],
+    "regulators": ["skateboard runs with a counselor", "time with Lena", "being given a real job"]
+  },
+  "cues": {
+    "reads": "fluent",
+    "preferredChannels": ["spoken", "text"],
+    "motifs": [
+      { "meaning": "I see you / the stunt is noted", "channel": "spoken", "cue": "'Hi Miles.' flat, with eye contact", "established": true },
+      { "meaning": "hard no", "channel": "spoken", "cue": "'No.' once, then move on, no discussion", "established": true }
+    ],
+    "leadTimes": { "transitionWarningMinutes": [5, 1], "waitTimeSeconds": 3 }
+  },
+  "schedule": {
+    "anchors": [
+      { "id": "breakfast", "label": "breakfast", "time": "08:00", "expectedDurationMin": 30, "symbol": "🍳" },
+      { "id": "skate", "label": "skateboard with counselor", "afterAnchor": "breakfast", "expectedDurationMin": 30, "importance": "high", "symbol": "🛹" },
+      { "id": "lunch", "label": "lunch", "time": "12:00", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "rest", "label": "rest hour (eyes on him)", "time": "13:00", "expectedDurationMin": 60, "symbol": "👀" },
+      { "id": "nurse", "label": "nurse check (skin, bruises)", "time": "16:30", "expectedDurationMin": 15, "importance": "critical", "symbol": "🩹" },
+      { "id": "dinner", "label": "dinner", "time": "17:30", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "bed", "label": "bed", "time": "21:00", "symbol": "🌙" }
+    ],
+    "changeTolerance": "ok",
+    "knownHardTransitions": ["ending skateboard time"]
+  },
+  "people": [
+    { "name": "Lena", "role": "one-to-one", "notes": "loves him; the person he performs least for", "trusted": true },
+    { "name": "Casey", "role": "counselor", "notes": "skateboard runner; got bitten once, unimpressed, still friends", "trusted": true }
+  ],
+  "goals": [
+    { "id": "g1", "text": "Miles will get a laugh from staff with a joke that isn't a stunt, daily.", "measure": "staff log: verbal jokes vs. physical stunts" },
+    { "id": "g2", "text": "Daily full skin check by nurse; every 'I got hurt' gets examined, calmly, every time.", "owner": "nurse", "measure": "nurse log" }
+  ],
+  "safetyAlerts": [
+    "Congenital insensitivity to pain: he cannot feel injury. Check every bump; a daily skin check is medical, not optional.",
+    "Will deliberately hurt himself to provoke a reaction (fork in outlet). Outlet covers, eyes on him, boring face."
+  ],
+  "fit": { "level": "full", "note": "Communication is not Miles's deficit. The tool here is for the partner: telling performance from need, and keeping him safe without rewarding the stunt." },
+  "guardrails": {
+    "aiNeverSpeaksForPerson": true,
+    "maxInterpretations": 3,
+    "bannedPhrases": ["poor thing", "he can't help it", "sensory seeking"],
+    "alwaysOfferDecline": true,
+    "requireHumanReviewForNewLexicon": true,
+    "consent": { "guardianConsent": true, "personAssent": "yes", "allowedUses": ["interpretation", "coaching", "insights"] }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "walt",
+  "displayName": "Walt",
+  "age": 16,
+  "pronouns": "he/him",
+  "summary": "Walt says yes. To questions, to statements, to the fire marshal asking if he started the fire. 'Yes' is his social glue, not his answer — it means 'I'm with you, keep going.' He is big, strong, and usually placid, but when something he is trying to do won't work (a clogged toothpaste pump) the frustration arrives all at once with no warning he knows how to give. Never ask him about the thing that just failed.",
+  "strengths": ["likes people and wants to be agreeable", "strong and helpful with carrying and setting up", "remorseful and gentle after an outburst — he hates having hurt anyone", "can do long routines once learned"],
+  "interests": ["stacking and carrying chairs", "the fire truck", "being given a job"],
+  "expressive": {
+    "primaryModes": ["yes", "single words", "shows you the object"],
+    "typicalUtteranceLength": "single_word",
+    "gestaltProcessor": false,
+    "voiceStyle": "'Yes.' 'Yeah.' Sometimes the object's name. Rarely more."
+  },
+  "receptive": {
+    "understandsMoreThanShows": true,
+    "bestWith": ["statements, not questions", "showing him two real things and letting him take one", "telling him the plan while handing him the object"],
+    "avoid": ["yes/no questions as a way of finding anything out", "asking about a task that just failed", "'Did you…?' or 'Are you…?' when it matters"],
+    "processingTimeSeconds": 10,
+    "responseBias": {
+      "kind": "acquiescence",
+      "notes": "Answers yes to anything, including 'did you start the fire?' and 'are you a fireman?'. A yes from Walt is a social response. Only his actions and his choices between real objects count as answers."
+    },
+    "comprehensionKnown": true
+  },
+  "lexicon": [
+    {
+      "id": "lex-yes",
+      "form": "says 'yes' / 'yeah'",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "I'm with you / keep talking / I like you", "contexts": [], "function": "social_bid", "confidence": "core", "provenance": { "source": "caregiver", "confirmedBy": "whole staff", "timesObserved": 500 } },
+        { "gloss": "(agreement with what was asked)", "contexts": ["only when he ALSO reaches for the thing or starts the action"], "function": "comment", "confidence": "emerging", "provenance": { "source": "caregiver", "timesObserved": 20 } }
+      ],
+      "doNotInterpretAs": ["confirmation of anything", "an admission", "consent on its own"],
+      "notes": "The Fire Marshal lesson. 'Yes' + action = yes. 'Yes' alone = hello."
+    },
+    {
+      "id": "lex-holds-out-object",
+      "form": "holds an object out to you without a word",
+      "modality": "object",
+      "meanings": [
+        { "gloss": "This won't work / fix this / help", "contexts": [], "function": "request", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 45 } }
+      ],
+      "doNotInterpretAs": ["giving you a present", "showing off"],
+      "notes": "This is the window. Take the object, fix it or say plainly 'it's broken, I'll get a new one', and do NOT ask him what happened."
+    },
+    {
+      "id": "lex-gripping",
+      "form": "grips the object harder, knuckles white, jaw set, silent",
+      "modality": "behavior",
+      "meanings": [
+        { "gloss": "Frustration is about to overflow; seconds left", "contexts": ["a task or object isn't working"], "function": "distress", "confidence": "core", "provenance": { "source": "caregiver", "confirmedBy": "Casey (learned the hard way)", "timesObserved": 15 } }
+      ],
+      "doNotInterpretAs": ["concentration", "stubbornness"]
+    },
+    {
+      "id": "lex-sorry",
+      "form": "says 'sorry' repeatedly, head down, for hours or days after hurting someone",
+      "modality": "speech",
+      "meanings": [
+        { "gloss": "I hate that I did that; I need to know we're okay", "contexts": ["after an outburst"], "function": "distress", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 10 } }
+      ],
+      "doNotInterpretAs": ["manipulation", "not meaning it"],
+      "notes": "Accept it once, clearly, and give him a job. Repeated reassurance keeps the loop going; a task ends it."
+    }
+  ],
+  "sensory": {
+    "seeking": ["heavy work — carrying, stacking, pushing"],
+    "avoiding": ["being questioned", "people crowding him when he's stuck on something"],
+    "triggers": [
+      {
+        "trigger": "an object or task that won't work (pump, zipper, lid) and being asked about it",
+        "category": "other",
+        "scanAhead": false,
+        "earlySigns": ["silent", "grip tightens", "holds the object out to someone", "jaw set"],
+        "escalation": "destroys the object with his hands, then hits whoever speaks to him next — one blow, no warning, then it's over",
+        "whatHelps": ["take the object from his hand before you speak", "state, don't ask: 'Broken. New one.'", "give him something heavy to carry", "say nothing about the thing for the rest of the day"],
+        "whatMakesItWorse": ["'What happened?' 'Did you brush your teeth?' — any question", "standing close in front of him", "two people talking at once"],
+        "provenance": { "source": "caregiver", "confirmedBy": "Casey", "timesObserved": 6 }
+      }
+    ],
+    "regulators": ["carrying chairs or benches", "pushing the laundry cart", "sitting in the fire truck"]
+  },
+  "cues": {
+    "reads": "some_words",
+    "preferredChannels": ["object", "spoken", "photo"],
+    "motifs": [
+      { "meaning": "transition coming", "channel": "object", "cue": "hand him the object for the next thing (towel = swim, plate = meal)", "established": true },
+      { "meaning": "all good / we're okay", "channel": "gesture", "cue": "fist bump", "established": true }
+    ],
+    "leadTimes": { "transitionWarningMinutes": [5], "waitTimeSeconds": 10 }
+  },
+  "schedule": {
+    "anchors": [
+      { "id": "wake", "label": "wake + wash", "time": "07:15", "expectedDurationMin": 30, "symbol": "🪥" },
+      { "id": "breakfast", "label": "breakfast", "time": "08:00", "expectedDurationMin": 30, "symbol": "🍳" },
+      { "id": "job", "label": "morning job (chairs)", "afterAnchor": "breakfast", "expectedDurationMin": 30, "importance": "high", "symbol": "🪑" },
+      { "id": "swim", "label": "swim", "time": "10:30", "expectedDurationMin": 60, "symbol": "🏊" },
+      { "id": "lunch", "label": "lunch", "time": "12:00", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "dinner", "label": "dinner", "time": "17:30", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "bed", "label": "bed", "time": "21:00", "symbol": "🌙" }
+    ],
+    "changeTolerance": "ok",
+    "knownHardTransitions": []
+  },
+  "people": [
+    { "name": "Casey", "role": "counselor", "notes": "he knocked Casey out once over a toothpaste pump and apologized all summer; they're fine", "trusted": true }
+  ],
+  "goals": [
+    { "id": "g1", "text": "Walt will hand over a stuck object (the 'help' gesture) before gripping it, in 4 of 5 observed frustrations.", "measure": "staff log: hand-over vs. grip/destroy" },
+    { "id": "g2", "text": "Staff will use no yes/no questions to establish facts with Walt; choices are offered as two real objects.", "owner": "staff", "measure": "coach-card compliance, spot checks" }
+  ],
+  "safetyAlerts": ["Sudden single strike when frustrated with an object and then questioned. Take the object, make statements, don't ask. He's big; don't stand close in front when his grip tightens."],
+  "fit": { "level": "full" },
+  "guardrails": {
+    "aiNeverSpeaksForPerson": true,
+    "maxInterpretations": 3,
+    "bannedPhrases": ["did you", "are you", "right?", "okay?"],
+    "alwaysOfferDecline": true,
+    "requireHumanReviewForNewLexicon": true,
+    "consent": { "guardianConsent": true, "personAssent": "unable_to_determine", "allowedUses": ["interpretation", "coaching", "insights"] }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "id": "ivy",
+  "displayName": "Ivy",
+  "age": 14,
+  "pronouns": "she/her",
+  "summary": "Ivy communicates through song. She has a set of songs, and each one means something; she sings the first line and waits for a chosen person to sing the next. If someone she hasn't chosen sings to her, she gets upset — it's her conversation, and the partner has to be invited. She rarely uses spoken words outside of lyrics but follows conversations closely.",
+  "strengths": ["perfect pitch", "remembers every lyric she has ever heard", "reads people's moods fast", "gentle with younger kids"],
+  "interests": ["Madonna", "musicals", "the camp piano", "drawing faces"],
+  "expressive": {
+    "primaryModes": ["song fragments (call-and-response)", "humming", "drawing", "occasional single words"],
+    "typicalUtteranceLength": "phrases_scripts",
+    "gestaltProcessor": true,
+    "voiceStyle": "sings rather than speaks; when she does speak it is quiet and high, one or two words",
+    "registers": [
+      { "name": "song call-and-response (singing to or with her)", "authorizedPartners": ["Casey", "Jo"], "ifUnauthorized": "Speak normally. Do not sing, hum along, or join in. If she sings a first line at YOU, you've been chosen — then sing back." }
+    ]
+  },
+  "receptive": {
+    "understandsMoreThanShows": true,
+    "bestWith": ["being spoken to normally, not slowly", "sung responses from chosen people", "written words (she reads)"],
+    "avoid": ["baby talk", "unchosen people singing at her", "touching her shoulder from behind"],
+    "processingTimeSeconds": 5
+  },
+  "lexicon": [
+    {
+      "id": "lex-holiday",
+      "form": "sings 'Holiday… celebrate'",
+      "modality": "song",
+      "meanings": [
+        { "gloss": "I'm happy / this is good / let's keep doing this", "contexts": [], "function": "joy", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 80 } }
+      ],
+      "doNotInterpretAs": ["a request to stop work (it's not)"]
+    },
+    {
+      "id": "lex-live-to-tell",
+      "form": "hums 'Live to Tell' slowly",
+      "modality": "song",
+      "meanings": [
+        { "gloss": "Something is wrong and I don't want to talk about it yet", "contexts": ["after conflict", "evening"], "function": "distress", "confidence": "established", "provenance": { "source": "therapist", "confirmedBy": "music therapist", "timesObserved": 11 } },
+        { "gloss": "I'm tired", "contexts": ["after 20:00"], "function": "comment", "confidence": "emerging", "provenance": { "source": "caregiver", "timesObserved": 4 } }
+      ],
+      "doNotInterpretAs": []
+    },
+    {
+      "id": "lex-first-line",
+      "form": "sings the first line of any song and stops, looking at one person",
+      "modality": "song",
+      "meanings": [
+        { "gloss": "You — I choose you. Sing the next line.", "contexts": [], "function": "social_bid", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 200 } }
+      ],
+      "doNotInterpretAs": ["an invitation for anyone nearby to join in"]
+    },
+    {
+      "id": "lex-no-song",
+      "form": "turns her back and hums one flat note",
+      "modality": "song",
+      "meanings": [
+        { "gloss": "Not you. Not now.", "contexts": ["someone unchosen sang to her"], "function": "protest", "confidence": "core", "provenance": { "source": "caregiver", "timesObserved": 30 } }
+      ],
+      "doNotInterpretAs": ["she's being rude", "she didn't hear you"]
+    },
+    {
+      "id": "lex-draw-face",
+      "form": "draws a face and hands it to you",
+      "modality": "drawing",
+      "meanings": [
+        { "gloss": "This is how I feel about you / how you look to me right now", "contexts": [], "function": "comment", "confidence": "established", "provenance": { "source": "caregiver", "timesObserved": 20 } }
+      ],
+      "doNotInterpretAs": []
+    }
+  ],
+  "sensory": {
+    "seeking": ["music with bass", "drawing with soft pencils"],
+    "avoiding": ["unexpected touch from behind", "group sing-alongs she didn't start", "whistling"],
+    "triggers": [
+      {
+        "trigger": "an unchosen person sings to or at her",
+        "earlySigns": ["turns her back", "one flat note"],
+        "escalation": "covers ears, leaves the room, won't sing for the rest of the day",
+        "whatHelps": ["the unchosen person stops immediately and steps back", "a chosen person sings a 'repair' line from Holiday"],
+        "whatMakesItWorse": ["'she's just shy, keep going'", "laughing"],
+        "provenance": { "source": "caregiver", "confirmedBy": "music therapist", "timesObserved": 14 }
+      }
+    ],
+    "regulators": ["piano time alone", "drawing", "a chosen person humming with her"]
+  },
+  "cues": {
+    "reads": "fluent",
+    "preferredChannels": ["music", "text", "spoken"],
+    "motifs": [
+      { "meaning": "transition coming", "channel": "music", "cue": "the four-chord intro to 'Holiday' on the piano app", "established": true },
+      { "meaning": "all good", "channel": "music", "cue": "hum the 'celebrate' phrase", "established": true }
+    ],
+    "leadTimes": { "transitionWarningMinutes": [5, 1], "waitTimeSeconds": 5 }
+  },
+  "schedule": {
+    "anchors": [
+      { "id": "breakfast", "label": "breakfast", "time": "08:00", "expectedDurationMin": 30, "symbol": "🍳" },
+      { "id": "music", "label": "music room", "time": "09:30", "expectedDurationMin": 60, "importance": "high", "symbol": "🎹" },
+      { "id": "lunch", "label": "lunch", "time": "12:00", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "art", "label": "art", "time": "14:00", "expectedDurationMin": 60, "symbol": "🎨" },
+      { "id": "dinner", "label": "dinner", "time": "17:30", "expectedDurationMin": 45, "symbol": "🍽️" },
+      { "id": "bed", "label": "bed", "time": "21:00", "symbol": "🌙" }
+    ],
+    "changeTolerance": "moderate",
+    "knownHardTransitions": ["leaving the music room"]
+  },
+  "people": [
+    { "name": "Casey", "role": "counselor", "notes": "chosen singing partner", "trusted": true },
+    { "name": "Jo", "role": "music therapist", "notes": "chosen", "trusted": true }
+  ],
+  "goals": [
+    { "id": "g1", "text": "Ivy will choose a new singing partner (invite a peer with a first line) at least twice a week.", "measure": "staff log of first-line bids to peers" }
+  ],
+  "guardrails": {
+    "aiNeverSpeaksForPerson": true,
+    "maxInterpretations": 3,
+    "bannedPhrases": ["she's just shy"],
+    "alwaysOfferDecline": true,
+    "requireHumanReviewForNewLexicon": true,
+    "consent": { "guardianConsent": true, "personAssent": "yes", "allowedUses": ["interpretation", "composition", "coaching", "insights"] }
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+bridge/data/
+bridge/server.log
+bridge/evals/last-run.*
+.env
+# raw source notes (personal chat logs) stay local
+*.txt

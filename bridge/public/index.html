@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <h1>Bridge</h1>
+    <span class="tag">AI proposes · people decide</span>
+  </div>
+  <div class="who">
+    <label>Person <select id="profileSelect"></select></label>
+    <label>You <input id="partnerName" value="Casey" size="10" /></label>
+    <span id="providerBadge" class="badge">…</span>
+  </div>
+</header>
+
+<section id="board" class="board" aria-label="Today's schedule">
+  <div class="board-head">
+    <h2 id="boardTitle">Today</h2>
+    <div class="board-clock"><label>Clock <input id="clock" type="time" /></label><button id="clockNow" class="ghost">now</button></div>
+  </div>
+  <div id="strip" class="strip"></div>
+  <div id="due" class="due"></div>
+</section>
+
+<nav class="tabs" role="tablist">
+  <button data-tab="interpret" class="on">What did that mean?</button>
+  <button data-tab="compose">Help them say it</button>
+  <button data-tab="change">Plan changed</button>
+  <button data-tab="coach">How do I talk with them?</button>
+  <button data-tab="story">Story for an event</button>
+  <button data-tab="log">Log a moment</button>
+  <button data-tab="review">Review queue <span id="reviewCount" class="count"></span></button>
+  <button data-tab="insights">Patterns</button>
+  <button data-tab="profile">Profile</button>
+</nav>
+
+<main>
+  <section data-panel="interpret" class="panel on">
+    <form id="fInterpret" class="form">
+      <label>What they said or did (verbatim, concrete)<textarea name="observation" required placeholder="says 'bell bell' and keeps looking at the dining hall door, pacing"></textarea></label>
+      <div class="row">
+        <label>Where<input name="setting" placeholder="outside dining hall" /></label>
+        <label>Time<input name="timeOfDay" placeholder="11:58" /></label>
+        <label>Just before<input name="stateBefore" placeholder="calm, waiting in line" /></label>
+      </div>
+      <label>What happened recently (one per line)<textarea name="recentEvents" placeholder="lunch bell rang 4 minutes ago&#10;kitchen running late"></textarea></label>
+      <button class="primary">Ask Bridge</button>
+    </form>
+    <div id="outInterpret" class="out"></div>
+  </section>
+
+  <section data-panel="compose" class="panel">
+    <p class="hint">They pick the seeds. Bridge drafts options in their voice. They choose — or choose "something else". Nothing is spoken automatically.</p>
+    <form id="fCompose" class="form">
+      <label>Seeds, in the order they chose (one per line or comma-separated)<textarea name="seeds" required placeholder="lunch&#10;board"></textarea></label>
+      <div class="row">
+        <label>To whom<input name="audience" placeholder="Casey" /></label>
+        <label>Intent hint<select name="intent"><option>unknown</option><option>request</option><option>protest</option><option>comment</option><option>greeting</option><option>question</option><option>share_interest</option></select></label>
+        <label>How much to expand<select name="register"><option value="own_voice">their own voice (default)</option><option value="slightly_expanded">a little</option><option value="full_sentence">full sentence</option></select></label>
+      </div>
+      <button class="primary">Draft options</button>
+    </form>
+    <div id="outCompose" class="out"></div>
+  </section>
+
+  <section data-panel="change" class="panel">
+    <form id="fChange" class="form">
+      <div class="row">
+        <label>Which anchor<select name="anchorId" id="anchorSelect"></select></label>
+        <label>What's changing<select name="change"><option>delayed</option><option>earlier</option><option>cancelled</option><option>replaced</option><option>new</option></select></label>
+        <label>New time<input name="newTime" type="time" /></label>
+        <label>Replaced by<input name="replacedBy" placeholder="indoor games" /></label>
+      </div>
+      <label>Why, honestly (it will be simplified, not hidden)<input name="reason" required placeholder="The kitchen oven broke. Lunch is 20 minutes late." /></label>
+      <button class="primary">Build the new map</button>
+    </form>
+    <div id="outChange" class="out"></div>
+  </section>
+
+  <section data-panel="coach" class="panel">
+    <form id="fCoach" class="form">
+      <label>The situation<input name="situation" required placeholder="I'm new and I need to get him out of the pool at the end of swim" /></label>
+      <label>Your role<input name="partnerRole" placeholder="new counselor" /></label>
+      <button class="primary">Get the card</button>
+    </form>
+    <div id="outCoach" class="out"></div>
+  </section>
+
+  <section data-panel="story" class="panel">
+    <form id="fStory" class="form">
+      <div class="row">
+        <label>Event<input name="event" required placeholder="a fire drill" /></label>
+        <label>When<input name="when" placeholder="Tomorrow after breakfast" /></label>
+      </div>
+      <label>Worries (one per line)<textarea name="concerns" placeholder="the alarm is loud"></textarea></label>
+      <button class="primary">Draft the story</button>
+    </form>
+    <div id="outStory" class="out"></div>
+  </section>
+
+  <section data-panel="log" class="panel">
+    <p class="hint">Fast logging in the moment. These feed the Patterns view. No AI involved.</p>
+    <div class="two">
+      <form id="fReg" class="form">
+        <h3>Regulation</h3>
+        <div class="chips" id="regStages">
+          <button type="button" data-stage="early_sign">early sign</button>
+          <button type="button" data-stage="escalating">escalating</button>
+          <button type="button" data-stage="meltdown">meltdown</button>
+          <button type="button" data-stage="recovering">recovering</button>
+          <button type="button" data-stage="settled">settled</button>
+        </div>
+        <div class="row"><label>Where<input name="setting" /></label><label>Note<input name="note" /></label></div>
+      </form>
+      <form id="fVoc" class="form">
+        <h3>Sound / vocalization</h3>
+        <label>What it sounded like<input name="form" required placeholder="long rising 'eeee', hands flapping" /></label>
+        <div class="row">
+          <label>Your read right now<select name="label"><option>request</option><option>frustrated</option><option>delighted</option><option>self-talk</option><option>dysregulated</option><option>social</option><option>unsure</option></select></label>
+          <label>Where<input name="setting" /></label>
+        </div>
+        <button class="primary">Log sound</button>
+      </form>
+    </div>
+    <div id="outLog" class="out"></div>
+  </section>
+
+  <section data-panel="review" class="panel">
+    <p class="hint">Everything the AI wants to add to the profile waits here. Nothing enters the profile without a person approving it.</p>
+    <div id="outReview" class="out"></div>
+  </section>
+
+  <section data-panel="insights" class="panel">
+    <button id="runInsights" class="primary">Look for patterns in the log</button>
+    <div id="outInsights" class="out"></div>
+  </section>
+
+  <section data-panel="profile" class="panel">
+    <div id="outProfile" class="out"></div>
+    <details><summary>Edit raw profile JSON</summary>
+      <textarea id="profileJson" rows="24"></textarea>
+      <button id="saveProfile" class="primary">Save profile</button>
+      <span id="saveMsg"></span>
+    </details>
+  </section>
+</main>
+<footer class="foot">Every interpretation is a hypothesis. Every drafted message is a candidate. The person and the people who know them decide. · <a href="/api/health">status</a></footer>
+<script src="app.js"></script>
+</body>
+</html>
