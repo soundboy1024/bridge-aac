@@ -7,7 +7,7 @@
   "strengths": ["tracks sequences precisely", "remembers every staff member's name and car", "voice impressions (Pee-Wee Herman)", "helpful with setting tables"],
   "interests": ["Pee-Wee's Playhouse", "car makes and models", "the camp bell"],
   "expressive": {
-    "primaryModes": ["single words", "Pee-Wee Herman script lines", "leads adult by the wrist", "points at the schedule board"],
+    "primaryModes": ["single words", "delayed echolalia (scripted lines from Pee-Wee's Playhouse)", "leads adult by the wrist", "points at the schedule board"],
     "typicalUtteranceLength": "two_three_words",
     "gestaltProcessor": true,
     "voiceStyle": "clipped, loud, repeats the key word twice: 'lunch lunch'"
@@ -63,7 +63,7 @@
     "triggers": [
       {
         "trigger": "meal called but food not served within ~5 minutes",
-        "earlySigns": ["says 'bell bell'", "pacing by the door", "Pee-Wee script gets faster and louder"],
+        "earlySigns": ["says 'bell bell'", "pacing by the door", "scripting (delayed echolalia) speeds up and gets louder"],
         "escalation": "hitting self, then others, within 10 minutes",
         "whatHelps": ["show the board and a timer: 'food in 4 minutes'", "give him a job: carry the napkins in", "walk with him, no talking"],
         "whatMakesItWorse": ["'it's coming, be patient'", "crowding him", "more than one adult talking"],
@@ -78,7 +78,7 @@
         "provenance": { "source": "caregiver", "timesObserved": 6 }
       }
     ],
-    "regulators": ["walk the fence line with one adult", "carry something heavy", "look at the board together", "Pee-Wee voice back-and-forth"]
+    "regulators": ["walk the fence line with one adult", "carry something heavy", "look at the board together", "turn-taking with his scripted lines (partner answers in character)"]
   },
   "cues": {
     "reads": "none",
@@ -110,7 +110,7 @@
     "knownHardTransitions": ["swim → anything", "any delay to a meal"]
   },
   "people": [
-    { "name": "Casey", "role": "counselor", "notes": "Pee-Wee partner; Felix trusts him with the board", "trusted": true },
+    { "name": "Casey", "role": "counselor", "notes": "his scripting partner (answers his lines in character); Felix trusts him with the board", "trusted": true },
     { "name": "Dana", "role": "head counselor", "trusted": true }
   ],
   "goals": [

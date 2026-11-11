@@ -18,7 +18,7 @@ export const Confidence = z.enum(["observed_once", "emerging", "established", "c
 export type Confidence = z.infer<typeof Confidence>;
 
 export const Provenance = z.object({
-  source: z.enum(["caregiver", "therapist", "teacher", "self", "ai_hypothesis", "import"]),
+  source: z.enum(["caregiver", "therapist", "teacher", "self", "ai_hypothesis", "partner_interpretation", "import"]),
   confirmedBy: z.string().optional(), // name/role of the human who validated
   firstSeen: z.string().optional(), // ISO date
   lastSeen: z.string().optional(),

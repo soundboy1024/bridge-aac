@@ -20,8 +20,9 @@ const conf = (c) => `<span class="conf ${esc(c)}">${esc(c)}</span>`;
 async function boot() {
   const h = await api("/health");
   const badge = $("#providerBadge");
-  badge.textContent = h.provider === "claude" ? "Claude" : "mock mode (no API key)";
-  badge.classList.toggle("claude", h.provider === "claude");
+  const names = { claude: "Claude", groq: "Groq" };
+  badge.textContent = h.provider === "mock" ? "mock mode (rule-based, no AI)" : `AI: ${names[h.provider] ?? h.provider}${h.model ? ` · ${h.model}` : ""}`;
+  badge.classList.toggle("claude", h.provider !== "mock");
   const profiles = await api("/profiles");
   const sel = $("#profileSelect");
   sel.innerHTML = profiles.map((p) => `<option value="${esc(p.id)}">${esc(p.displayName)}${p.age ? `, ${p.age}` : ""}</option>`).join("");
@@ -49,6 +50,10 @@ async function loadProfile(id) {
   $$(".out").forEach((o) => (o.innerHTML = ""));
   await renderBoard();
   await refreshReviewCount();
+  // Re-draw the open tab for the new person (the clear above would otherwise leave it blank).
+  const open = $(".tabs button.on")?.dataset.tab;
+  if (open === "profile") renderProfile();
+  if (open === "review") renderReview();
 }
 
 // ---------- board ----------
@@ -78,6 +83,11 @@ $("#fInterpret").onsubmit = async (e) => {
       <div class="card"><h3>What it might mean</h3>
         ${r.interpretations.map((i, idx) => `<div class="opt"><div><span class="big">${esc(i.meaning)}</span>${conf(i.confidence)}<small>${esc(i.function)} · try: ${esc(i.tryThis)}${i.evidence.length ? ` · from: ${esc(i.evidence.join(", "))}` : " · not from the lexicon"}</small></div><button class="pick" data-i="${idx}">this was it</button></div>`).join("")}
         <div class="opt"><div><small>None of these fit</small></div><button class="pick" data-i="none">none</button></div>
+        <div class="reading">
+          <label>Figured it out? What do <b>you</b> think it meant?<textarea id="partnerReading" placeholder="e.g. he wanted to know if lunch was still happening"></textarea></label>
+          <p class="meta">Saved as your interpretation, not a confirmed reason. It may not be what it actually meant. It goes to the review queue before it can join the profile.</p>
+          <button class="ghost" id="saveReading">Save my interpretation</button>
+        </div>
         <p><b>To check:</b> ${esc(r.bestClarifyingCheck)}</p><p class="meta">${esc(r.partnerTip)}</p>
         ${r.lexiconCandidate ? `<p class="meta">Queued for review: possible new lexicon entry “${esc(r.lexiconCandidate.form)}”.</p>` : ""}
         <div class="prov">hypotheses · event ${esc(r.eventId)} · nothing saved to the profile until reviewed</div>
@@ -87,6 +97,16 @@ $("#fInterpret").onsubmit = async (e) => {
       await api(`/profiles/${state.profileId}/interpret/confirm`, { eventId: r.eventId, chosenIndex: idx, by: who() });
       b.textContent = "recorded"; b.disabled = true; refreshReviewCount();
     }));
+    $("#saveReading").onclick = async () => {
+      const text = $("#partnerReading").value.trim();
+      if (!text) { $("#partnerReading").focus(); return; }
+      const btn = $("#saveReading");
+      try {
+        await api(`/profiles/${state.profileId}/interpret/confirm`, { eventId: r.eventId, chosenIndex: null, by: who(), partnerReading: text });
+        btn.textContent = `saved as ${who()}'s interpretation (unverified) · in review queue`; btn.disabled = true; $("#partnerReading").disabled = true;
+        refreshReviewCount();
+      } catch (err) { btn.insertAdjacentHTML("afterend", errCard(err)); }
+    };
   } catch (err) { $("#outInterpret").innerHTML = errCard(err); } finally { busy(f, false); }
 };
 
@@ -216,10 +236,13 @@ $("#runInsights").onclick = async () => {
 
 // ---------- profile ----------
 function renderProfile() {
+  try { drawProfile(); } catch (err) { $("#outProfile").innerHTML = errCard(err); }
+}
+function drawProfile() {
   const p = state.profile;
   $("#outProfile").innerHTML = `<div class="card"><h3>${esc(p.displayName)} (${esc(p.pronouns)}${p.age ? `, ${p.age}` : ""})</h3><p>${esc(p.summary)}</p>
     <dl class="kv"><dt>Strengths</dt><dd>${esc(p.strengths.join("; "))}</dd><dt>Interests</dt><dd>${esc(p.interests.join("; "))}</dd><dt>Expresses via</dt><dd>${esc(p.expressive.primaryModes.join("; "))}</dd><dt>Best with</dt><dd>${esc(p.receptive.bestWith.join("; "))}</dd><dt>Avoid</dt><dd>${esc(p.receptive.avoid.join("; "))}</dd><dt>Regulators</dt><dd>${esc(p.sensory.regulators.join("; "))}</dd><dt>Reads</dt><dd>${esc(p.cues.reads)} · channels: ${esc(p.cues.preferredChannels.join(", "))}</dd><dt>Consent</dt><dd>guardian: ${p.guardrails.consent.guardianConsent ? "yes" : "no"} · person: ${esc(p.guardrails.consent.personAssent)}</dd></dl></div>
-    <div class="card"><h3>Lexicon (${p.lexicon.length})</h3>${p.lexicon.map((l) => `<div class="lex"><b>${esc(l.form)}</b><span>${l.meanings.map((m) => `“${esc(m.gloss)}” <span class="meta">${esc(m.function)}, ${esc(m.confidence)}${m.contexts.length ? `, when ${esc(m.contexts.join("/"))}` : ""} · ${esc(m.provenance.source)}${m.provenance.confirmedBy ? ` ✓ ${esc(m.provenance.confirmedBy)}` : ""}</span>`).join("<br>")}${l.doNotInterpretAs.length ? `<br><span class="meta">not: ${esc(l.doNotInterpretAs.join(", "))}</span>` : ""}</span></div>`).join("")}</div>
+    <div class="card"><h3>Lexicon (${p.lexicon.length})</h3>${p.lexicon.map((l) => `<div class="lex"><b>${esc(l.form)}</b><span>${l.meanings.map((m) => `“${esc(m.gloss)}” <span class="meta">${esc(m.function)}, ${esc(m.confidence)}${m.contexts.length ? `, when ${esc(m.contexts.join("/"))}` : ""} · ${m.provenance.source === "partner_interpretation" ? "partner's interpretation (unverified)" : esc(m.provenance.source.replace("_", " "))}${m.provenance.confirmedBy ? ` ✓ ${esc(m.provenance.confirmedBy)}` : ""}</span>`).join("<br>")}${l.doNotInterpretAs.length ? `<br><span class="meta">not: ${esc(l.doNotInterpretAs.join(", "))}</span>` : ""}</span></div>`).join("")}</div>
     <div class="card"><h3>Triggers & cues</h3>${p.sensory.triggers.map((t) => `<div class="lex"><b>${esc(t.trigger)}</b><span>early: ${esc(t.earlySigns.join(", "))}<br>helps: ${esc(t.whatHelps.join(", "))}<br><span class="meta">worse: ${esc(t.whatMakesItWorse.join(", "))}</span></span></div>`).join("")}${p.cues.motifs.map((m) => `<div class="lex"><b>cue: ${esc(m.meaning)}</b><span>${esc(m.cue)} (${esc(m.channel)}${m.established ? "" : ", still teaching"})</span></div>`).join("")}</div>`;
   $("#profileJson").value = JSON.stringify(p, null, 2);
 }

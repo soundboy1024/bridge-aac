@@ -40,13 +40,13 @@ export function createApp(bridge: Bridge) {
       }
     };
 
-  app.get("/api/health", wrap(() => ({ ok: true, provider: bridge.provider.name, claudeCredentials: hasClaudeCredentials() })));
+  app.get("/api/health", wrap(() => ({ ok: true, provider: bridge.provider.name, model: (bridge.provider as { model?: string }).model ?? null, claudeCredentials: hasClaudeCredentials() })));
   app.get("/api/profiles", wrap(() => bridge.store.listProfiles().map((p) => ({ id: p.id, displayName: p.displayName, age: p.age, summary: p.summary }))));
   app.get("/api/profiles/:id", wrap((req) => bridge.store.getProfile(req.params.id) ?? (() => { throw new Error("not found"); })()));
   app.put("/api/profiles/:id", wrap((req) => bridge.store.saveProfile(parseProfile({ ...req.body, id: req.params.id }), req.body._actor ?? "editor", "manual edit")));
 
   app.post("/api/profiles/:id/interpret", wrap((req) => bridge.interpret(req.params.id, req.body)));
-  app.post("/api/profiles/:id/interpret/confirm", wrap((req) => bridge.confirmInterpretation(req.params.id, req.body.eventId, req.body.chosenIndex ?? null, req.body.by ?? "partner", req.body.note)));
+  app.post("/api/profiles/:id/interpret/confirm", wrap((req) => bridge.confirmInterpretation(req.params.id, req.body.eventId, req.body.chosenIndex ?? null, req.body.by ?? "partner", req.body.note, req.body.partnerReading)));
   app.post("/api/profiles/:id/compose", wrap((req) => bridge.compose(req.params.id, req.body)));
   app.post("/api/profiles/:id/send", wrap((req) => bridge.send(req.params.id, req.body.eventId, req.body.candidateIndex ?? null, req.body.chosenBy ?? "partner_with_person", req.body.finalText)));
   app.post("/api/profiles/:id/coach", wrap((req) => bridge.coach(req.params.id, req.body)));
@@ -71,6 +71,6 @@ if (isMain) {
   const port = Number(process.env.PORT ?? 8787);
   createApp(bridge).listen(port, () => {
     console.log(`Bridge running at http://localhost:${port}  (provider: ${bridge.provider.name}, data: ${dataDir})`);
-    if (bridge.provider.name === "mock") console.log("No ANTHROPIC_API_KEY found — running in deterministic mock mode. Set the key to use Claude.");
+    if (bridge.provider.name === "mock") console.log("Mock mode: rule-based answers, no AI. Put a GROQ_API_KEY or ANTHROPIC_API_KEY in .env to use a real model.");
   });
 }

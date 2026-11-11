@@ -142,12 +142,12 @@ export class Store {
     const prov = { source: "ai_hypothesis" as const, confirmedBy: by, firstSeen: now, lastSeen: now, timesObserved: 1 };
     switch (item.kind) {
       case "lexicon_add": {
-        const p = item.proposal as { form: string; modality?: string; gloss: string; function?: string; contexts?: string[] };
+        const p = item.proposal as { form: string; modality?: string; gloss: string; function?: string; contexts?: string[]; source?: "partner_interpretation" };
         profile.lexicon.push({
           id: `lex-${newId()}`,
           form: p.form,
           modality: (p.modality as any) ?? "other",
-          meanings: [{ gloss: p.gloss, contexts: p.contexts ?? [], function: (p.function as any) ?? "unknown", confidence: "observed_once", provenance: prov }],
+          meanings: [{ gloss: p.gloss, contexts: p.contexts ?? [], function: (p.function as any) ?? "unknown", confidence: "observed_once", provenance: (p.source ? { ...prov, source: p.source } : prov) }],
           doNotInterpretAs: [],
         });
         break;

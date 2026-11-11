@@ -40,7 +40,7 @@ The seven sample profiles are fictional composites inspired by kids from a 1990s
 |---|---|
 | **Felix** | Non-reader; meal-timing trigger; scripts (Pee-Wee) as comfort and as bid; the anchor engine |
 | **Ivy** | Communicates through song; a *register* only her chosen partners may use (`expressive.registers`) |
-| **Gus** | Route-number idiolect; savant interest as a bridge |
+| **Gus** | Route-number idiolect; intense interest as a bridge |
 | **Theo** | Phobic triggers (dogs, balloons) with self-injury; `scanAhead` — check the setting before he arrives |
 | **Walt** | Acquiescence (`receptive.responseBias`) — says yes to everything, including "did you start the fire?"; the Interpreter may not confirm with yes/no |
 | **Miles** | No pain response (`safetyAlerts`); deliberate stunts (`play_or_testing`) — not every behavior is a need |

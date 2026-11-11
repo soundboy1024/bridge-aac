@@ -172,3 +172,18 @@ test("consent is enforced in code: no Composer for Rowan; coach doesn't claim he
   assert.ok(!/understands you/.test(card.headline), card.headline);
   assert.match(card.headline, /talk to him as if he does/);
 });
+
+test("partner's own reading is saved as their unverified interpretation and only joins the profile through review", async () => {
+  const b = fresh();
+  const i = await b.interpret("felix", { observation: "taps the window twice and points at the bus", context: { setting: "cabin" } });
+  const ev = b.confirmInterpretation("felix", i.eventId, null, "Casey", undefined, "he thought the bus was leaving without him");
+  assert.equal(ev.data.partnerReading, "he thought the bus was leaving without him");
+  assert.equal(ev.data.readingIsUnverified, true);
+  const item = b.store.reviewQueue("felix").find((x) => x.status === "pending" && (x.proposal as any).gloss === "he thought the bus was leaving without him");
+  assert.ok(item, "queued for review");
+  assert.match(item!.rationale, /not a confirmed reason/);
+  assert.ok(!b.store.getProfile("felix")!.lexicon.some((l) => l.meanings.some((m) => m.gloss.startsWith("he thought the bus"))), "not in profile before review");
+  b.store.decide("felix", item!.id, "approved", "Casey");
+  const m = b.store.getProfile("felix")!.lexicon.flatMap((l) => l.meanings).find((m) => m.gloss.startsWith("he thought the bus"))!;
+  assert.equal(m.provenance.source, "partner_interpretation");
+});

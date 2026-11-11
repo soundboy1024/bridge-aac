@@ -63,12 +63,23 @@ export class Bridge {
   }
 
   /** Human closes the loop: which interpretation (if any) was right. */
-  confirmInterpretation(profileId: string, proposedEventId: string, chosenIndex: number | null, by: string, note?: string) {
+  /**
+   * The partner picks one of the hypotheses, or writes their own reading.
+   * A written reading is stored as the partner's interpretation — what they
+   * believe it meant, not a confirmed fact — and only reaches the profile via review.
+   */
+  confirmInterpretation(profileId: string, proposedEventId: string, chosenIndex: number | null, by: string, note?: string, partnerReading?: string) {
     const ev = this.store.events(profileId).find((e) => e.id === proposedEventId);
     if (!ev) throw new Error("proposed event not found");
     const out = ev.data.output as InterpretOutput;
     const chosen = chosenIndex !== null ? out.interpretations[chosenIndex] : undefined;
-    const conf = this.store.logEvent({ profileId, kind: "interpretation_confirmed", context: ev.context, data: { proposedEventId, chosenIndex, by, note, chosen } });
+    const reading = partnerReading?.trim() || undefined;
+    const conf = this.store.logEvent({ profileId, kind: "interpretation_confirmed", context: ev.context, data: { proposedEventId, chosenIndex, by, note, chosen, partnerReading: reading, readingIsUnverified: reading ? true : undefined } });
+    if (reading) {
+      const obs = this.store.events(profileId).find((e) => e.id === ev.data.observationEventId);
+      this.store.propose({ profileId, kind: "lexicon_add", proposal: { form: obs?.data.observation ?? "?", gloss: reading, function: "unknown", contexts: [ev.context.setting, ev.context.anchor && `near ${ev.context.anchor}`].filter(Boolean), source: "partner_interpretation" }, rationale: `${by}'s interpretation of this moment. This is what they believe it meant, not a confirmed reason — it may not be the actual cause.`, sourceEventIds: [proposedEventId, conf.id] });
+      return conf;
+    }
     // A confirmed reading with lexicon evidence strengthens nothing automatically;
     // it becomes a refine proposal so the confidence bump is a human decision too.
     if (chosen && chosen.evidence.length === 0 && chosen.confidence !== "high") {
