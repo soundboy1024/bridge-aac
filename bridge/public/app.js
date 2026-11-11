@@ -2,13 +2,21 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const state = { profileId: null, profile: null, clock: null };
+const state = { profileId: null, profile: null, clock: null, aiProvider: false };
+function showFallback(reason) {
+  // The AI didn't answer this one; say so instead of passing off mock text as AI.
+  let n = $("#fallbackNote");
+  if (!n) { $("main").insertAdjacentHTML("afterbegin", `<div id="fallbackNote" class="err"></div>`); n = $("#fallbackNote"); }
+  n.textContent = `That answer came from the rule-based mock, not the AI, because ${reason}. Try again later for an AI answer.`;
+}
 const who = () => $("#partnerName").value.trim() || "partner";
 
 async function api(path, body, method) {
   const r = await fetch(`/api${path}`, { method: method ?? (body ? "POST" : "GET"), headers: { "content-type": "application/json" }, body: body ? JSON.stringify(body) : undefined });
   const j = await r.json();
   if (!r.ok) throw new Error(j.error ?? r.statusText);
+  if (j && j._servedBy === "mock" && state.aiProvider) showFallback(j._fallbackReason);
+  else if (j && j._servedBy) $("#fallbackNote")?.remove();
   return j;
 }
 const errCard = (e) => `<div class="err">${esc(e.message || e)}</div>`;
@@ -23,6 +31,11 @@ async function boot() {
   const names = { claude: "Claude", groq: "Groq" };
   badge.textContent = h.provider === "mock" ? "mock mode (rule-based, no AI)" : `AI: ${names[h.provider] ?? h.provider}${h.model ? ` · ${h.model}` : ""}`;
   badge.classList.toggle("claude", h.provider !== "mock");
+  state.aiProvider = h.provider !== "mock";
+  if (h.demo) {
+    badge.title = h.aiRemainingToday !== null ? `Public demo · AI answers left today: ${h.aiRemainingToday}` : "Public demo";
+    const save = $("#saveProfile"); if (save) save.closest("details").remove(); // editing is off in the public demo
+  }
   const profiles = await api("/profiles");
   const sel = $("#profileSelect");
   sel.innerHTML = profiles.map((p) => `<option value="${esc(p.id)}">${esc(p.displayName)}${p.age ? `, ${p.age}` : ""}</option>`).join("");

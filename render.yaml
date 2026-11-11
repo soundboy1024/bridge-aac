@@ -1,0 +1,24 @@
+# Render Blueprint for the public Bridge demo.
+# Render dashboard → New → Blueprint → pick this repo. You'll be asked for GROQ_API_KEY.
+services:
+  - type: web
+    name: bridge-aac
+    runtime: node
+    plan: free
+    rootDir: bridge
+    buildCommand: npm ci --include=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DEMO_MODE
+        value: "1"
+      - key: BRIDGE_PROVIDER
+        value: groq
+      - key: GROQ_API_KEY
+        sync: false # entered by you in the Render dashboard; never stored in the repo
+      - key: DEMO_AI_DAILY_LIMIT
+        value: "40" # real AI answers per day for the whole site; then mock answers
+      - key: DEMO_AI_PER_IP_HOURLY
+        value: "8"
